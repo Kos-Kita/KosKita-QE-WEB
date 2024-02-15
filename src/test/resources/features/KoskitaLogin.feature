@@ -26,8 +26,25 @@ Feature: Login
     Then User already on homepage
 
   @Booking
-  Scenario:
+  Scenario: User renter booking
     Given User already on homepage
+    When User click to login page
     Then User already on login page
-    When User input "keiowner12@gmail.com" as email and "tatang12" as password
+    When User input "julirenter@gmail.com" as email and "julirenter" as password
     Then User already on homepage
+    When User input search "jakarta" and search
+    When User click the fourth kos
+    When User set the date for booking
+    And User click continue ordering
+    Then User verified the ordering
+    And User select the payment and pay
+    Then User verify the detail payment
+
+
+
+
+
+
+
+
+

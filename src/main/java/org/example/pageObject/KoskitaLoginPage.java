@@ -53,6 +53,44 @@ public class KoskitaLoginPage {
     @FindBy(xpath = "//button[text()='Buat Akun']")
     private WebElement buttonCreateAccount;
 
+    //SEARCH
+    @FindBy (xpath = "//input[@id='search']")
+    private WebElement fieldSearch;
+    @FindBy(xpath = "//button[text()='Search']")
+    private WebElement buttonSearch;
+    @FindBy(xpath = "//button[@type='submit' and contains(text(), 'Search')]")
+    private WebElement verifySearchPage;
+    @FindBy(xpath = "(//h2[@class='cursor-pointer font-bold text-xl hover:text-2xl'])[4]")
+    private WebElement fourthKos;
+
+    //DETAIL KOS
+    @FindBy(xpath = "//div[@class='bg-[#F2F0F2] rounded-3xl flex flex-col items-center max-w-xl  gap-y-4 p-6']")
+    private WebElement verifyKosDetail;
+    @FindBy(xpath = "//span[.='Pick a date']")
+    private WebElement clickDate;
+    @FindBy(xpath = "//button[text()='20']")
+    private WebElement getClickDate;
+    @FindBy(xpath = "(//button[@type='button'])[1]")
+    private WebElement closeDate;
+    @FindBy(xpath = "//button[text()='Lanjutkan pemesanan']")
+    private WebElement buttonOrder;
+
+    //ORDERING
+    @FindBy(xpath = "//div[contains(@class, 'flex flex-col pb-4 font-bold leading-[133%] text-neutral-900 max-md:mt-10 max-md:max-w-full')]")
+    private WebElement verifyOrderPage;
+
+    @FindBy(xpath = "//select[@class='grow focus:outline-none w-[45vw] md:w-[22vw] p-4 bg-white rounded border border-solid shadow-sm border-zinc-400 max-md:pr-5']/option[text()='Virtual Account Bca']")
+    private WebElement clickPaymentBCA;
+
+    @FindBy(xpath = "//button[contains(text(), 'Confirm and pay')]")
+    private WebElement buttonConfirm;
+
+    @FindBy(xpath = "//div[@class='bg-white w-[25rem] p-8 rounded shadow-lg']")
+    private WebElement containerPayment;
+
+
+
+
 
 
 
@@ -90,7 +128,7 @@ public class KoskitaLoginPage {
         buttonOwner.click();
     }
     public boolean verifyAtSignUpPage(){
-        return verifyHomepage.isDisplayed();
+        return verifySignUpPage.isDisplayed();
     }
     public void inputFieldNameRegister(String name){
         fieldName.sendKeys(name);
@@ -113,6 +151,65 @@ public class KoskitaLoginPage {
     public void clickBuatAkun(){
         buttonCreateAccount.click();
     }
+
+
+    //SEARCH
+    public void inputSearch(String search){
+        fieldSearch.sendKeys(search);
+    }
+    public void clickSearch(){
+        buttonSearch.click();
+    }
+    public boolean verifyPageSearch(){
+        return verifySearchPage.isDisplayed();
+    }
+
+    //BOOKING
+    public void clickFourthKos(){
+        fourthKos.click();
+    }
+    public boolean verifyOnKosDetail(){
+        return verifyKosDetail.isDisplayed();
+    }
+    public void setClickDate(){
+        clickDate.click();
+    }
+
+    public void setPickDate(){
+        getClickDate.click();
+    }
+    public void setCloseDate(){
+        closeDate.click();
+    }
+
+    public void setClickOrder(){
+        buttonOrder.click();
+    }
+    public boolean setVerifyOrderPage(){
+        return verifyOrderPage.isDisplayed();
+    }
+    public void setClickPaymentBCA(){
+        clickPaymentBCA.click();
+    }
+    public void setButtonConfirm(){
+        buttonConfirm.click();
+    }
+    public boolean setVerifyPayment(){
+        return containerPayment.isDisplayed();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
