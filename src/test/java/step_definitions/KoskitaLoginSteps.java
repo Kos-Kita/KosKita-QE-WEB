@@ -7,9 +7,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.sl.In;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -75,9 +73,10 @@ public class KoskitaLoginSteps {
         koskitaLoginPage.inputFieldPasswordRegister(password);
         koskitaLoginPage.clickGender();
         koskitaLoginPage.clickAgree();
+        koskitaLoginPage.setBackToLogin();
 //        koskitaLoginPage.clickBuatAkun();
 //        Thread.sleep(5000);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+
     }
 
     @Then("User already on login page")
@@ -126,11 +125,40 @@ public class KoskitaLoginSteps {
     }
 
     @And("User select the payment and pay")
-    public void userSelectThePaymentAndPay() {
+    public void userSelectThePaymentAndPay() throws InterruptedException {
         koskitaLoginPage.setClickPaymentBCA();
-        koskitaLoginPage.setButtonConfirm();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+//        koskitaLoginPage.setButtonConfirm();
+//        koskitaLoginPage.setButtonConfirm();
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+//        koskitaLoginPage.setButtonConfirm();
+//        koskitaLoginPage.setButtonConfirm();
+//        driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+//        try {
+//            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+//            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='bg-white w-[25rem] p-8 rounded shadow-lg']")));
+//            // If the verification element is found, proceed with the next steps
+//            // For example:
+//            // koskitaLoginPage.clickContinueButton();
+//        } catch (NoSuchElementException | TimeoutException e) {
+//            // Handle the case where the verification element is not found within the specified time
+//            // You can log an error message or take appropriate action
+//            System.out.println("Verification element not found within the specified time.");
+//        }
 
+        boolean elementFound = false;
+        while (!elementFound) {
+            koskitaLoginPage.setButtonConfirm();
+            TimeUnit.SECONDS.sleep(1); // Optional, you can remove this line if you don't need the delay
+            try {
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='bg-white w-[25rem] p-8 rounded shadow-lg']")));
+                elementFound = true; // Set elementFound to true if the element is found
+            } catch (NoSuchElementException | TimeoutException e) {
+                // Handle the case where the verification element is not found within the specified time
+                // You can log an error message or take appropriate action
+                System.out.println("Verification element not found within the specified time. Retrying...");
+            }
+        }
     }
 
     @Then("User verify the detail payment")

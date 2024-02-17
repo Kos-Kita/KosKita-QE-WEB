@@ -4,15 +4,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class KoskitaLoginPage {
 
     public static WebDriver webDriver;
+//   public WebDriverWait wait;
 
     public KoskitaLoginPage(WebDriver driver){
         PageFactory.initElements(driver, this);
         webDriver = driver;
     }
+
+
 
     @FindBy(xpath = "//p[text()='Cari disini aja dah']")
     private WebElement verifyHomepage;
@@ -28,6 +33,8 @@ public class KoskitaLoginPage {
     private WebElement fieldPassword;
     @FindBy (xpath = "//button[text()='Login']")
     private WebElement buttonLogin;
+    @FindBy(xpath = "//div[text()='Log in']")
+    private WebElement backToLogin;
 
     //REGISTER
     @FindBy(xpath = "//span[contains(@class, 'text-[#4CA02E]') and text()='Sign up']")
@@ -79,10 +86,10 @@ public class KoskitaLoginPage {
     @FindBy(xpath = "//div[contains(@class, 'flex flex-col pb-4 font-bold leading-[133%] text-neutral-900 max-md:mt-10 max-md:max-w-full')]")
     private WebElement verifyOrderPage;
 
-    @FindBy(xpath = "//select[@class='grow focus:outline-none w-[45vw] md:w-[22vw] p-4 bg-white rounded border border-solid shadow-sm border-zinc-400 max-md:pr-5']/option[text()='Virtual Account Bca']")
+    @FindBy(xpath = "//select[@class='grow focus:outline-none w-[45vw] md:w-[22vw] p-4 bg-white rounded border border-solid shadow-sm border-zinc-400 max-md:pr-5']/option[text()='Virtual Account Bni']")
     private WebElement clickPaymentBCA;
 
-    @FindBy(xpath = "//button[contains(text(), 'Confirm and pay')]")
+    @FindBy(xpath = "//button[contains(@class, 'bg-lime-600') and contains(text(), 'Confirm and pay')]")
     private WebElement buttonConfirm;
 
     @FindBy(xpath = "//div[@class='bg-white w-[25rem] p-8 rounded shadow-lg']")
@@ -116,6 +123,7 @@ public class KoskitaLoginPage {
     public void clickButtonLogin(){
         buttonLogin.click();
     }
+    public void setBackToLogin(){backToLogin.click();}
 
     //REGISTER
     public void clickSignUp(){
@@ -191,7 +199,7 @@ public class KoskitaLoginPage {
     public void setClickPaymentBCA(){
         clickPaymentBCA.click();
     }
-    public void setButtonConfirm(){
+    public void setButtonConfirm() {
         buttonConfirm.click();
     }
     public boolean setVerifyPayment(){
