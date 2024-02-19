@@ -26,6 +26,7 @@ public class KoskitaLoginSteps {
     @Given("User already on homepage")
     public void verifyUserName(){
         Assert.assertTrue(koskitaLoginPage.verifyAtHomepage());
+        driver.navigate().refresh();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
     }
     @Then("User click button sign in")
@@ -103,17 +104,18 @@ public class KoskitaLoginSteps {
     }
 
     @When("User set the date for booking")
-    public void userSetTheDateForBooking() {
+    public void userSetTheDateForBooking() throws InterruptedException{
         koskitaLoginPage.setClickDate();
         koskitaLoginPage.setPickDate();
         koskitaLoginPage.setCloseDate();
+        Thread.sleep(3000);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
 
     }
 
 
     @And("User click continue ordering")
-    public void userClickContinueOrdering() {
+    public void userClickContinueOrdering() throws InterruptedException {
         koskitaLoginPage.setClickOrder();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
     }
@@ -164,6 +166,92 @@ public class KoskitaLoginSteps {
     @Then("User verify the detail payment")
     public void userVerifyTheDetailPayment() {
         Assert.assertTrue(koskitaLoginPage.setVerifyPayment());
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+    }
+
+    @Then("Verify message password incorrect")
+    public void verifyMessagePasswordIncorrect() {
+        Assert.assertTrue(koskitaLoginPage.verifyPasswordIncorrect());
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+    }
+
+    @When("User click login")
+    public void userClickLogin() {
+        koskitaLoginPage.clickButtonLogin();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+
+    }
+
+    @Then("Verify message email and password is required")
+    public void verifyMessageEmailAndPasswordIsRequired() {
+        Assert.assertTrue(koskitaLoginPage.verifyEmailRequired());
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+    }
+
+    @When("And user logout")
+    public void andUserLogout() throws InterruptedException{
+        koskitaLoginPage.setClickUser();
+        koskitaLoginPage.clickLogOutButton();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+    }
+
+    @When("User go to user profile")
+    public void userGoToUserProfile() throws InterruptedException {
+        driver.navigate().refresh();
+        koskitaLoginPage.setClickUser();
+        koskitaLoginPage.setGotoProfile();
+
+        // Refresh page
+        driver.navigate().refresh();
+
+        Assert.assertTrue(koskitaLoginPage.setVerifyProfile());
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+    }
+
+    @And("User edit name as {string} and username as {string}")
+    public void userEditNameAsAndUsernameAs(String name, String username) {
+        koskitaLoginPage.setInputEditName(name);
+        koskitaLoginPage.setInputEditUsername(username);
+        koskitaLoginPage.setButtonEditAkun();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+    }
+    @And("User edit name as {string}")
+    public void userEditNameAs(String name) {
+        driver.navigate().refresh();
+        koskitaLoginPage.setInputEditName(name);
+        koskitaLoginPage.setButtonEditAkun();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+    }
+    @And("User edit username as {string}")
+    public void userEditUsernameAs(String username) {
+        koskitaLoginPage.setInputEditUsername(username);
+        koskitaLoginPage.setButtonEditAkun();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+    }
+
+    @And("User go to homepage")
+    public void userGoToHomepage() {
+        koskitaLoginPage.setButtonHome();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+    }
+
+    @And("User give the the rating")
+    public void userGiveTheTheRating() {
+        koskitaLoginPage.setButtonAddRating();
+        koskitaLoginPage.setButton5Stars();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+//        koskitaLoginPage.setSubmitRatings();
+    }
+
+    @Then("User already on admin page")
+    public void userAlreadyOnAdminPage() {
+        Assert.assertTrue(koskitaLoginPage.verifyAdminPage());
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+    }
+
+    @Then("Verify message account is not registered")
+    public void verifyMessageAccountIsNotRegistered() {
+        Assert.assertTrue(koskitaLoginPage.verifyAccountNotRegistered());
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
     }
 }
