@@ -18,9 +18,15 @@ public class KoskitaLoginPage {
     }
 
 
-
+//HOMEPAGE
     @FindBy(xpath = "//p[text()='Cari disini aja dah']")
     private WebElement verifyHomepage;
+    @FindBy(css = "[alt='person']")
+    private WebElement clickUser;
+    @FindBy(xpath = "//img[@alt='Brand-logo']")
+    private WebElement homeButton;
+
+
 
     //LOGIN
     @FindBy (xpath = "//h2[text()='Masuk Akun']")
@@ -35,6 +41,19 @@ public class KoskitaLoginPage {
     private WebElement buttonLogin;
     @FindBy(xpath = "//div[text()='Log in']")
     private WebElement backToLogin;
+    @FindBy(xpath = "//div[contains(text(), 'Logout')]")
+    private WebElement buttonLogout;
+    @FindBy(xpath = "//div[@class='text-sm opacity-90' and text()='Password incorrect']")
+    private WebElement verifyMessagePassword;
+    @FindBy(xpath = "//p[@class='text-red-500 text-sm' and text()='Email is required']")
+    private WebElement getVerifyEmailRequired;
+    @FindBy(xpath = "//div[@class='text-sm opacity-90' and text()='Account is not registered']")
+    private WebElement getVerifyNotRegistered;
+
+
+
+
+
 
     //REGISTER
     @FindBy(xpath = "//span[contains(@class, 'text-[#4CA02E]') and text()='Sign up']")
@@ -60,6 +79,7 @@ public class KoskitaLoginPage {
     @FindBy(xpath = "//button[text()='Buat Akun']")
     private WebElement buttonCreateAccount;
 
+
     //SEARCH
     @FindBy (xpath = "//input[@id='search']")
     private WebElement fieldSearch;
@@ -75,18 +95,18 @@ public class KoskitaLoginPage {
     private WebElement verifyKosDetail;
     @FindBy(xpath = "//span[.='Pick a date']")
     private WebElement clickDate;
-    @FindBy(xpath = "//button[text()='20']")
+    @FindBy(xpath = "//button[text()='25']")
     private WebElement getClickDate;
     @FindBy(xpath = "(//button[@type='button'])[1]")
     private WebElement closeDate;
-    @FindBy(xpath = "//button[text()='Lanjutkan pemesanan']")
+    @FindBy(xpath = "//button[contains(text(), 'Lanjutkan pemesanan')]")
     private WebElement buttonOrder;
 
     //ORDERING
     @FindBy(xpath = "//div[contains(@class, 'flex flex-col pb-4 font-bold leading-[133%] text-neutral-900 max-md:mt-10 max-md:max-w-full')]")
     private WebElement verifyOrderPage;
 
-    @FindBy(xpath = "//select[@class='grow focus:outline-none w-[45vw] md:w-[22vw] p-4 bg-white rounded border border-solid shadow-sm border-zinc-400 max-md:pr-5']/option[text()='Virtual Account Bni']")
+    @FindBy(xpath = "//select[@class='grow focus:outline-none w-[45vw] md:w-[22vw] p-4 bg-white rounded border border-solid shadow-sm border-zinc-400 max-md:pr-5']/option[text()='Virtual Account Bca']")
     private WebElement clickPaymentBCA;
 
     @FindBy(xpath = "//button[contains(@class, 'bg-lime-600') and contains(text(), 'Confirm and pay')]")
@@ -95,8 +115,29 @@ public class KoskitaLoginPage {
     @FindBy(xpath = "//div[@class='bg-white w-[25rem] p-8 rounded shadow-lg']")
     private WebElement containerPayment;
 
+    //EDIT Profile
+    @FindBy(xpath = "//button[@class='grow justify-center px-3 py-2 md:px-4 md:py-3 bg-lime-600 rounded shadow-sm']")
+    private WebElement buttonEditAkun;
+    @FindBy(xpath = "//div[contains(text(), 'Profile')]")
+    private WebElement buttonProfile;
+    @FindBy(xpath = "//input[@id='name']")
+    private WebElement inputEditName;
+    @FindBy(xpath = "//input[@id='user_name']")
+    private WebElement inputEditUsername;
+    @FindBy(xpath = "//div[form]")
+    private WebElement verifyProfile;
 
+    //RATING
+    @FindBy(xpath = "(//button[@class='px-3 py-2 bg-lime-600 text-white rounded-md'])[1]")
+    private WebElement buttonAddRating;
+    @FindBy(xpath = "(//button[@class='w-10 h-10 focus:outline-none text-gray-400' and text()='★'])[5]")
+    private WebElement button5Stars;
+    @FindBy(xpath = "//button[@class='px-3 py-2 border-2 border-slate-100 bg-lime-600 text-white' and text()='Submit Rating']")
+    private WebElement submitRatings;
 
+    //Admin
+    @FindBy(xpath = "//div[contains(@class, 'flex z-10 flex-col') and contains(., 'Booking Details')]")
+    private WebElement getVerifyAdminPage;
 
 
 
@@ -124,6 +165,16 @@ public class KoskitaLoginPage {
         buttonLogin.click();
     }
     public void setBackToLogin(){backToLogin.click();}
+    public boolean verifyPasswordIncorrect(){
+        return verifyMessagePassword.isDisplayed();
+    }
+    public boolean verifyEmailRequired(){
+        return getVerifyEmailRequired.isDisplayed();
+    }
+    public void clickLogOutButton(){buttonLogout.click();}
+    public boolean verifyAdminPage(){return getVerifyAdminPage.isDisplayed();}
+    public boolean verifyAccountNotRegistered(){return getVerifyNotRegistered.isDisplayed();}
+
 
     //REGISTER
     public void clickSignUp(){
@@ -159,6 +210,32 @@ public class KoskitaLoginPage {
     public void clickBuatAkun(){
         buttonCreateAccount.click();
     }
+
+    //EDIT PROFILE
+    public void setInputEditName(String name){
+        inputEditName.sendKeys(name);
+    }
+    public void setInputEditUsername(String username){
+        inputEditUsername.sendKeys(username);
+    }
+    public void setButtonEditAkun(){
+        buttonEditAkun.click();
+    }
+    public void setGotoProfile(){
+        buttonProfile.click();
+    }
+    public boolean setVerifyProfile(){return verifyProfile.isDisplayed();}
+
+    //HOMEPAGE
+    public void setButtonHome(){
+        homeButton.click();
+    }
+    public void setClickUser(){
+        clickUser.click();
+    }
+
+
+
 
 
     //SEARCH
@@ -207,7 +284,16 @@ public class KoskitaLoginPage {
     }
 
 
-
+    //RATINGS
+    public void setButtonAddRating(){
+        buttonAddRating.click();
+    }
+    public void setButton5Stars(){
+        button5Stars.click();
+    }
+    public void setSubmitRatings(){
+        submitRatings.click();
+    }
 
 
 

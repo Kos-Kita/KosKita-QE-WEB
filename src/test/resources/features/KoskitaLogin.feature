@@ -2,43 +2,90 @@
 Feature: Login
   User want login to website Koskita as renter and owner
 
-  @Login
+  @Login001
+    #Login as renter
   Scenario: User login with valid credential as renter
     Given User already on homepage
     When User click to login page
-    And  User click to sign up page
-    And And user want to create account as a renter
-    And User input "kei renter " as name "keirenter12" as username "keirenter12@gmail.com" as email "tatang12" as a password fill gender and create account
-    Then User already on login page
-    When User input "keirenter12@gmail.com" as email and "tatang12" as password
+    And User already on login page
+    And User input "keirenter12@gmail.com" as email and "tatang12" as password
     Then User already on homepage
 
-
-  @Login
+  @Login002
+    #Login as owner
   Scenario: User login with valid credential as owner
     Given User already on homepage
     When User click to login page
-    And  User click to sign up page
-    And And user want to create account as a owner
-    And User input "kei owner" as name "keiowner12" as username "keirenter12@gmail.com" as email "tatang12" as a password fill gender and create account
     Then User already on login page
     When User input "juliowner@gmail.com" as email and "juliowner" as password
     Then User already on homepage
 
-  @Booking
-  Scenario: User renter booking
+  @Login003
+    #Login as admin
+  Scenario: User login with valid credential as admin
+    Given User already on homepage
+    When User click to login page
+    Then User already on login page
+    When User input "admin@gmail.com" as email and "admin123" as password
+    Then User already on admin page
+
+
+  @Login004
+    #Login with an incorrect password.
+  Scenario: User with an incorrect password
+    Given User already on homepage
+    When User click to login page
+    Then User already on login page
+    When User input "juliowner@gmail.com" as email and "juliowner1" as password
+    Then Verify message password incorrect
+
+  @Login005
+    #Login with not registered account
+  Scenario: User login with not registered account
+    Given User already on homepage
+    When User click to login page
+    Then User already on login page
+    When User input "juliowner100@gmail.com" as email and "juliowner1" as password
+    Then Verify message account is not registered
+
+  @Login006
+    #Login with a blank username and password fields.
+  Scenario: User with a blank username and password fields
+    Given User already on homepage
+    When User click to login page
+    Then User already on login page
+    When User click login
+    Then Verify message email and password is required
+
+
+  @Logout001
+  Scenario: User logout successfully
     Given User already on homepage
     When User click to login page
     Then User already on login page
     When User input "julirenter@gmail.com" as email and "julirenter" as password
     Then User already on homepage
-    When User input search "jakarta" and search
-    And User click the fourth kos
-    And User set the date for booking
-    And User click continue ordering
-    Then User verified the ordering
-    When User select the payment and pay
-    Then User verify the detail payment
+    When And user logout
+    Then User already on login page
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
