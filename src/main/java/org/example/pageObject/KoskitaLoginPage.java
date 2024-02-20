@@ -97,7 +97,7 @@ public class KoskitaLoginPage {
     private WebElement buttonSearch;
     @FindBy(xpath = "//button[@type='submit' and contains(text(), 'Search')]")
     private WebElement verifySearchPage;
-    @FindBy(xpath = "(//h2[@class='cursor-pointer font-bold text-xl hover:text-2xl'])[4]")
+    @FindBy(xpath = "(//h2[@class='cursor-pointer font-bold text-xl hover:text-2xl'])[2]")
     private WebElement fourthKos;
 
     //DETAIL KOS
