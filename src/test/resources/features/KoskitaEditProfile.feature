@@ -34,4 +34,4 @@ And User go to homepage
     Then User already on homepage
     When User go to user profile
     And User edit username as "julirenter"
-#    And User go to homepage
+    And User go to homepage

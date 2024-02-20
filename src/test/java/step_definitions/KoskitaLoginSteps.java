@@ -77,7 +77,42 @@ public class KoskitaLoginSteps {
         koskitaLoginPage.setBackToLogin();
 //        koskitaLoginPage.clickBuatAkun();
 //        Thread.sleep(5000);
+    }
 
+    @And("User input {string} as name {string} as username {string} as email {string} as a password fill gender")
+    public void userInputAsNameAsUsernameAsEmailAsAPasswordFillGender(String name, String username, String email, String password) throws InterruptedException{
+        Assert.assertTrue(koskitaLoginPage.verifyAtSignUpPage());
+        koskitaLoginPage.inputFieldNameRegister(name);
+        koskitaLoginPage.inputFieldUsernameRegister(username);
+        koskitaLoginPage.inputFieldEmailRegister(email);
+        koskitaLoginPage.inputFieldPasswordRegister(password);
+        koskitaLoginPage.clickGender();
+        koskitaLoginPage.clickAgree();
+//        koskitaLoginPage.clickBuatAkun();
+//        Thread.sleep(5000);
+    }
+
+    @And("User input {string} as name {string} as username {string} as email {string} as a password")
+    public void userInputAsNameAsUsernameAsEmailAsAPassword(String name, String username, String email, String password) throws InterruptedException{
+        Assert.assertTrue(koskitaLoginPage.verifyAtSignUpPage());
+        koskitaLoginPage.inputFieldNameRegister(name);
+        koskitaLoginPage.inputFieldUsernameRegister(username);
+        koskitaLoginPage.inputFieldEmailRegister(email);
+        koskitaLoginPage.inputFieldPasswordRegister(password);
+        koskitaLoginPage.clickAgree();
+//        koskitaLoginPage.clickBuatAkun();
+//        Thread.sleep(5000);
+    }
+
+    @And("User input {string} as name {string} as username {string} as a password")
+    public void userInputAsNameAsUsernameAsAPassword(String name, String username, String password) throws InterruptedException{
+        Assert.assertTrue(koskitaLoginPage.verifyAtSignUpPage());
+        koskitaLoginPage.inputFieldNameRegister(name);
+        koskitaLoginPage.inputFieldUsernameRegister(username);
+        koskitaLoginPage.inputFieldPasswordRegister(password);
+        koskitaLoginPage.clickAgree();
+//        koskitaLoginPage.clickBuatAkun();
+//        Thread.sleep(5000);
     }
 
     @Then("User already on login page")
@@ -253,5 +288,40 @@ public class KoskitaLoginSteps {
     public void verifyMessageAccountIsNotRegistered() {
         Assert.assertTrue(koskitaLoginPage.verifyAccountNotRegistered());
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+    }
+
+    @And("User create account")
+    public void userCreateAccount() {
+        koskitaLoginPage.clickBuatAkun();
+    }
+
+    @Then("Appear message email already existed")
+    public void appearMessageEmailAlreadyExisted() {
+        Assert.assertTrue(koskitaLoginPage.verifyEmailExisting());
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+    }
+
+    @Then("Appear message email not valid")
+    public void appearMessageEmailNotValid() {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+        Assert.assertTrue(koskitaLoginPage.verifyEmailNotValid());
+    }
+
+    @Then("Appear message minimum requirement password")
+    public void appearMessageMinimumRequirementPassword() {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+        Assert.assertTrue(koskitaLoginPage.verifyPasswordRequirement());
+    }
+
+    @Then("Appear message please select gender")
+    public void appearMessagePleaseSelectGender() {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+        Assert.assertTrue(koskitaLoginPage.verifyGenderNotValid());
+    }
+
+    @Then("Verify message not a valid email")
+    public void verifyMessageNotAValidEmail() {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+        Assert.assertTrue(koskitaLoginPage.verifyNotAValidEmail());
     }
 }

@@ -15,7 +15,7 @@ When User input search "jakarta selatan" and search
 
 @Search
       #Search a kos that was not found in that address
-Scenario: User successfully search
+Scenario: User search a kos that was not found in that address
 Given User already on homepage
 When User click to login page
 Then User already on login page
