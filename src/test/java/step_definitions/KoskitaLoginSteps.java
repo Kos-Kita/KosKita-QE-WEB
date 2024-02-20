@@ -143,7 +143,6 @@ public class KoskitaLoginSteps {
         koskitaLoginPage.setClickDate();
         koskitaLoginPage.setPickDate();
         koskitaLoginPage.setCloseDate();
-        Thread.sleep(3000);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
 
     }
@@ -324,4 +323,6 @@ public class KoskitaLoginSteps {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         Assert.assertTrue(koskitaLoginPage.verifyNotAValidEmail());
     }
+
+
 }
