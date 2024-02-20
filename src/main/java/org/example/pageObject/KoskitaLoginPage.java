@@ -49,6 +49,8 @@ public class KoskitaLoginPage {
     private WebElement getVerifyEmailRequired;
     @FindBy(xpath = "//div[@class='text-sm opacity-90' and text()='Account is not registered']")
     private WebElement getVerifyNotRegistered;
+    @FindBy(xpath = "//p[@class='text-red-500 text-sm' and text()='Not a valid email']")
+    private WebElement getNotAValidEmail;
 
 
 
@@ -78,6 +80,14 @@ public class KoskitaLoginPage {
     private WebElement checklistAgree;
     @FindBy(xpath = "//button[text()='Buat Akun']")
     private WebElement buttonCreateAccount;
+    @FindBy(xpath = "//p[text()='Kata sandi harus mengandung setidaknya satu huruf besar, satu huruf kecil, satu angka, satu karakter khusus, dan memiliki panjang minimal 6 karakter']")
+    private WebElement getPasswordRequirement;
+    @FindBy(xpath = "//div[@class='text-sm opacity-90' and text()='username atau email sudah ada']")
+    private WebElement getEmailExisting;
+    @FindBy(xpath = "//p[@class='text-red-500 text-sm' and text()='Email tidak valid']")
+    private WebElement getEmailNotValid;
+    @FindBy(xpath = "//p[@class='text-red-500 text-sm' and text()='Harap pilih jenis kelamin']")
+    private WebElement getGenderNotValid;
 
 
     //SEARCH
@@ -174,6 +184,7 @@ public class KoskitaLoginPage {
     public void clickLogOutButton(){buttonLogout.click();}
     public boolean verifyAdminPage(){return getVerifyAdminPage.isDisplayed();}
     public boolean verifyAccountNotRegistered(){return getVerifyNotRegistered.isDisplayed();}
+    public boolean verifyNotAValidEmail(){return getNotAValidEmail.isDisplayed();}
 
 
     //REGISTER
@@ -210,6 +221,11 @@ public class KoskitaLoginPage {
     public void clickBuatAkun(){
         buttonCreateAccount.click();
     }
+    public boolean verifyPasswordRequirement(){return getPasswordRequirement.isDisplayed();}
+    public boolean verifyEmailExisting(){return getEmailExisting.isDisplayed();}
+    public boolean verifyEmailNotValid(){return getEmailNotValid.isDisplayed();}
+    public boolean verifyGenderNotValid(){return getGenderNotValid.isDisplayed();}
+
 
     //EDIT PROFILE
     public void setInputEditName(String name){

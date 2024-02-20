@@ -8,7 +8,7 @@ Feature: Login
     Given User already on homepage
     When User click to login page
     And User already on login page
-    And User input "keirenter12@gmail.com" as email and "tatang12" as password
+    And User input "julirenter@gmail.com" as email and "julirenter" as password
     Then User already on homepage
 
   @Login002
@@ -57,6 +57,15 @@ Feature: Login
     When User click login
     Then Verify message email and password is required
 
+  @Login007
+    #Check login account invalid format email
+  Scenario: User login with account invalid format email
+    Given User already on homepage
+    When User click to login page
+    Then User already on login page
+    When User input "juliowner100@gmailcom" as email and "juliowner1" as password
+    Then Verify message not a valid email
+
 
   @Logout001
   Scenario: User logout successfully
@@ -67,6 +76,7 @@ Feature: Login
     Then User already on homepage
     When And user logout
     Then User already on login page
+
 
 
 
